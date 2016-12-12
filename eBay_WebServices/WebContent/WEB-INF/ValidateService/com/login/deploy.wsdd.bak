@@ -1,0 +1,76 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ValidateService WSDL service -->
+
+  <service name="Validate" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://login.com"/>
+      <parameter name="wsdlServiceElement" value="ValidateService"/>
+      <parameter name="schemaQualified" value="http://login.com"/>
+      <parameter name="wsdlServicePort" value="Validate"/>
+      <parameter name="className" value="com.login.ValidateSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Validate"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="search" qname="operNS:search" xmlns:operNS="http://login.com" returnQName="retNS:searchReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:searchString" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="validate" qname="operNS:validate" xmlns:operNS="http://login.com" returnQName="retNS:validateReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:userpassword" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="showDashboard" qname="operNS:showDashboard" xmlns:operNS="http://login.com" returnQName="retNS:showDashboardReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="checkUser" qname="operNS:checkUser" xmlns:operNS="http://login.com" returnQName="retNS:checkUserReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="signUp" qname="operNS:signUp" xmlns:operNS="http://login.com" returnQName="retNS:signUpReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:firstname" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastname" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:email" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:birthday" xmlns:pns="http://login.com" type="tns:date" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:location" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:contact" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getProfileTweets" qname="operNS:getProfileTweets" xmlns:operNS="http://login.com" returnQName="retNS:getProfileTweetsReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="createTweet" qname="operNS:createTweet" xmlns:operNS="http://login.com" returnQName="retNS:createTweetReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:tweet" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getMyFollowing" qname="operNS:getMyFollowing" xmlns:operNS="http://login.com" returnQName="retNS:getMyFollowingReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getMyFollowers" qname="operNS:getMyFollowers" xmlns:operNS="http://login.com" returnQName="retNS:getMyFollowersReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="reTweet" qname="operNS:reTweet" xmlns:operNS="http://login.com" returnQName="retNS:reTweetReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:tweet" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getFeed" qname="operNS:getFeed" xmlns:operNS="http://login.com" returnQName="retNS:getFeedReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="searchHash" qname="operNS:searchHash" xmlns:operNS="http://login.com" returnQName="retNS:searchHashReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:searchString" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getProfileDetails" qname="operNS:getProfileDetails" xmlns:operNS="http://login.com" returnQName="retNS:getProfileDetailsReturn" xmlns:retNS="http://login.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:userid" xmlns:pns="http://login.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getProfileTweets showDashboard reTweet getMyFollowing getProfileDetails getFeed signUp createTweet checkUser search getMyFollowers searchHash validate"/>
+
+  </service>
+</deployment>
